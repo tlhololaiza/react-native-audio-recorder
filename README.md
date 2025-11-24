@@ -32,19 +32,7 @@ A fully-featured voice recording application built with React Native and Expo. R
 
 ### Installation
 
-1. **Create the Expo project:**
-```bash
-npx create-expo-app@latest react-native-audio-recorder
-cd react-native-audio-recorder
-```
-
-2. **Reset the project (clean template):**
-```bash
-npm run reset-project
-# Select 'n' when prompted
-```
-
-3. **Install dependencies:**
+1. **Install dependencies:**
 ```bash
 npx expo install expo-av expo-file-system @react-native-async-storage/async-storage expo-constants @react-native-community/slider
 ```
@@ -281,6 +269,7 @@ This project was created as part of a React Native course assignment (Task 3 - L
 
 ## 🙏 Acknowledgments
 
+- **Tlholo Tshwane**
 - **Expo Team** - For the amazing development platform
 - **React Native Community** - For excellent documentation and support
 - **Icons** - Ionicons by Ionic Framework
