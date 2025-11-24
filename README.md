@@ -37,14 +37,14 @@ A fully-featured voice recording application built with React Native and Expo. R
 npx expo install expo-av expo-file-system @react-native-async-storage/async-storage expo-constants @react-native-community/slider
 ```
 
-4. **Copy all project files** into their respective locations according to the folder structure below.
+2. **Copy all project files** into their respective locations according to the folder structure below.
 
-5. **Start the development server:**
+3. **Start the development server:**
 ```bash
 npx expo start
 ```
 
-6. **Run the app:**
+4. **Run the app:**
    - Press `a` for Android emulator
    - Press `i` for iOS simulator (Mac only)
    - Scan the QR code with Expo Go app on your physical device
