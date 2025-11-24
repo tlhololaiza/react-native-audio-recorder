@@ -2,15 +2,15 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
-    Alert,
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    useColorScheme,
-    View,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  useColorScheme,
+  View,
 } from 'react-native';
 import { RecordButton } from '../../components/RecordButton';
 import Colors from '../../constants/Colors';
@@ -59,13 +59,13 @@ export default function RecordScreen() {
           setFilename(generateDefaultFilename());
           setShowSaveDialog(true);
         }
-      } catch (error) {
+      } catch {
         Alert.alert('Error', 'Failed to stop recording. Please try again.');
       }
     } else {
       try {
         await startRecording();
-      } catch (error) {
+      } catch {
         Alert.alert('Error', 'Failed to start recording. Please check your microphone permissions.');
       }
     }
@@ -131,7 +131,7 @@ export default function RecordScreen() {
           onPress: () => router.push('/(tabs)'),
         },
       ]);
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to save recording. Please try again.');
     }
   };

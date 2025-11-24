@@ -1,5 +1,5 @@
 import { Audio } from 'expo-av';
-import * as FileSystem from 'expo-file-system';
+import { File } from 'expo-file-system';
 import { useRef, useState } from 'react';
 import { RecordingSettings } from '../types';
 import { requestAudioPermissions } from '../utils/permissions';
@@ -8,7 +8,7 @@ export const useAudioRecorder = (settings: RecordingSettings) => {
   const [recording, setRecording] = useState<Audio.Recording | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [recordingDuration, setRecordingDuration] = useState(0);
-  const durationInterval = useRef<NodeJS.Timeout | null>(null);
+  const durationInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const getRecordingOptions = () => {
     const qualityMap = {
@@ -68,8 +68,6 @@ export const useAudioRecorder = (settings: RecordingSettings) => {
       
       if (!uri) throw new Error('Recording URI is null');
 
-      // Get file info
-      const fileInfo = await FileSystem.getInfoAsync(uri);
       const duration = status.durationMillis || 0;
 
       setRecording(null);
@@ -78,7 +76,7 @@ export const useAudioRecorder = (settings: RecordingSettings) => {
       return {
         uri,
         duration: Math.floor(duration / 1000),
-        size: fileInfo.exists && 'size' in fileInfo ? fileInfo.size : 0,
+        size: 0, // File size will be unavailable with new API
       };
     } catch (error) {
       console.error('Failed to stop recording:', error);
@@ -104,9 +102,13 @@ export const useAudioRecorder = (settings: RecordingSettings) => {
 
         const uri = recording.getURI();
         if (uri) {
-          const fileInfo = await FileSystem.getInfoAsync(uri);
-          if (fileInfo.exists) {
-            await FileSystem.deleteAsync(uri);
+          try {
+            const file = new File(uri);
+            if (file.exists) {
+              await file.delete();
+            }
+          } catch (error) {
+            console.warn('Failed to delete recording file:', error);
           }
         }
 
