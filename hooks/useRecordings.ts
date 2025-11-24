@@ -1,4 +1,4 @@
-import * as FileSystem from 'expo-file-system';
+import { File } from 'expo-file-system';
 import { useCallback, useEffect, useState } from 'react';
 import { Recording } from '../types';
 import { loadRecordings, saveRecordings } from '../utils/storage';
@@ -39,9 +39,13 @@ export const useRecordings = () => {
       const recording = recordings.find(r => r.id === id);
       if (recording) {
         // Delete the file from file system
-        const fileInfo = await FileSystem.getInfoAsync(recording.uri);
-        if (fileInfo.exists) {
-          await FileSystem.deleteAsync(recording.uri);
+        try {
+          const file = new File(recording.uri);
+          if (file.exists) {
+            await file.delete();
+          }
+        } catch (error) {
+          console.warn('Failed to delete recording file:', error);
         }
       }
 

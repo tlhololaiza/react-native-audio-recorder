@@ -1,13 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import {
-    Alert,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    useColorScheme,
-    View
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useColorScheme,
+  View
 } from 'react-native';
 import Colors from '../../constants/Colors';
 import { RecordingSettings } from '../../types';
@@ -37,7 +37,7 @@ export default function SettingsScreen() {
       await saveSettings(settings);
       setHasChanges(false);
       Alert.alert('Success', 'Settings saved successfully!');
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to save settings. Please try again.');
     }
   };
@@ -190,7 +190,7 @@ export default function SettingsScreen() {
 
       <View style={styles.footer}>
         <Text style={[styles.footerText, { color: colors.tabIconDefault }]}>
-          Made with ❤️ using React Native & Expo
+          Design by Tlholo Tshwane using Expo and React Native
         </Text>
       </View>
     </ScrollView>
