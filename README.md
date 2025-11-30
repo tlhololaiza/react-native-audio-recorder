@@ -280,4 +280,4 @@ This project was created as part of a React Native course assignment (Task 3 - L
 **Last Updated**: November 2024
 
 🤖 Android app:
-https://expo.dev/artifacts/eas/miHNkctBWaFDDjPcsJj5oX.aab
+https://expo.dev/accounts/tlhololaiza/projects/react-native-audio-recorder/builds/4b09b2bd-a327-4037-8bd2-f941a3693683
